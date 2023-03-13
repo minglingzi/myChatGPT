@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload CSV File</title>
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Upload CSV File</h1>
+    <form th:action="@{/users/upload}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="file">Select CSV File:</label>
+            <input type="file" class="form-control-file" id="file" name="file" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+    <br>
+    <div th:if="${status != null}">
+        <p>Status: <span th:text="${status}"></span></p>
+        <p th:if="${users != null}">Uploaded Users:</p>
+        <table class="table table-striped" th:if="${users != null}">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.email}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
