@@ -1,0 +1,22 @@
+micronaut:
+  application:
+    name: myChatGPT
+datasources:
+  default:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    db-type: mysql
+    dialect: MYSQL
+liquibase:
+  datasources:
+    default:
+      change-log: classpath:db/liquibase-changelog.xml
+jpa:
+  default:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none
+netty:
+  default:
+    allocator:
+      max-order: 3
